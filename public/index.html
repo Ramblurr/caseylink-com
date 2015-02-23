@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Casey Link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400|Poiret+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="app.css" />
+  <!--[if lt IE 9]>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+  <!--[if !(IE)|(gte IE 9)]><!-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--<![endif]-->
+
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="all">
+        <a href="http://onvagrancy.com" class="wander side grayscale grayscale-fade">
+            <img src="img/wander-words.png" srcset="img/wander-words.png 411w, img/wander-words-206.png 206w" sizes="(max-width:1030px) 206px, 411px" >
+            <p>
+            <span>A Tramp's Notebook</span>
+            Where I write about my ongoing adventures, expeditions, and wanderings.
+            </p>
+        </a>
+        <a href="http://outskirtslabs.com" class="outskirts side grayscale grayscale-fade">
+            <img src="img/outskirts-words.png" srcset="img/outskirts-words.png 411w, img/outskirts-words-300.png 300w" sizes="(max-width:1030px) 300px, 411px" >
+            <p>
+            <span>Technology for Good</span>
+            My consultancy that delivers hand-crafted technical solutions to cause-based organizations focused on social impact.
+            </p>
+        </a>
+        <div class="middle">
+            <div class="profile-avatar overlay">
+                <img src="img/avatar-wander.jpg" srcset="img/avatar-wander.jpg 180w, img/avatar-wander-90.jpg 90w" sizes="(max-width:1030px) 90px, 180px" alt="Photo of Casey">
+            </div>
+            <div class="hello">
+                <h2>Casey Link</h2>
+                <p>
+                Hi there! I'm completely flattered you looked me up. You've arrived at my little internet clearing house. Time to make a choice, what are you most interested in?
+                </p>
+            </div>
+            <div class="buttons">
+                <ul>
+                    <li id="ol-link">
+                    <a href="http://outskirtslabs.com" class="">
+                        <h3>
+                            my consultancy
+                        </h3>
+                        <i class="icon-flask grayscale grayscale-fade right">
+                            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span>
+                        </i>
+                    </a>
+                    </li>
+                    <li id="vagrancy-link">
+                    <a href="http://onvagrancy.com" class="">
+                        <h3>
+                            my travels
+                        </h3>
+                        <i class="icon-tramp left"></i>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<script>
+$.fn.scrollTo = function (speed) {
+    if (typeof(speed) == 'undefined')
+        speed = 1000;
+
+    $('html, body').animate({
+        scrollTop: parseInt($(this).offset().top)
+    }, speed, 'swing');
+};
+function isNarrow() {
+    return $('.all').css('flex-direction') == 'column';
+}
+function alterAnchors(e) {
+    if( isNarrow() ) {
+        e.preventDefault();
+        $('.side.outskirts').scrollTo(800);
+    }
+}
+function adjustScroll() {
+    if( isNarrow() ) {
+        var vag = ($('.wander').offset().top - $(window).scrollTop())/ $(window).scrollTop();
+        var out = ($('.outskirts').offset().top - $(window).scrollTop())/ $(window).scrollTop();
+        $('.wander.side').toggleClass('grayscale-off',  vag < 1.0);
+        $('.outskirts.side').toggleClass('grayscale-off',  out < 1.0);
+    };
+}
+$( document ).ready( function() {
+    $('#ol-link').on('mouseenter mouseleave', function(e) {
+        $('.outskirts.side').toggleClass('grayscale-off');
+    });
+    $('#vagrancy-link').on('mouseenter mouseleave', function(e) {
+        $('.wander.side').toggleClass('grayscale-off');
+    });
+    $('#ol-link').on('click', alterAnchors);
+    $('#vagrancy-link').on('click', alterAnchors);
+    $(window).scroll(adjustScroll);
+    adjustScroll();
+});
+</script>
+</body>
+</html>
+
