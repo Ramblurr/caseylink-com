@@ -6,3 +6,6 @@ dist: clean
 
 clean:
 	rm -rf ./public/*
+
+deploy:
+	git subtree push --prefix public origin gh-page
