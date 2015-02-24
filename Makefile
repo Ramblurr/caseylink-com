@@ -8,4 +8,4 @@ clean:
 	rm -rf ./public/*
 
 deploy:
-	git subtree push --prefix public origin gh-page
+	git subtree push --prefix public origin gh-pages
